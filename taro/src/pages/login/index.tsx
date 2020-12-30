@@ -7,7 +7,7 @@ import NavBar from '@/components/navBar'
 import Tabbar from '@/components/tabBar'
 import Font from '@/components/font'
 
-import {removeToken} from '@/tools/yishoufa'
+import {removeToken} from '@/tools/yewu'
 import NativeFun from '@/tools/nativeFun'
 import https from '@/https/index'
 
@@ -126,12 +126,6 @@ function Index() {
           <Image className="ver-image" onClick={captchaImage} src={codeUrl} />
         </View>
       </View>:null}
-      <View className="justify-between padding-tb flex">
-        <Text className="theme-color" onClick={findPassword}>忘记密码？</Text>
-          <Navigator url="/pages/index/register" open-type="navigate">
-            <View className="text-blue">注册申请?</View>
-          </Navigator>
-      </View>
     </View>
       <View className="cu-tabbar-height"/>
       <View className="padding-lr cu-bar foot padding-tb-sm submit-but">

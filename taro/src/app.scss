@@ -1,0 +1,29 @@
+@import './static/font/iconfont.css';
+
+.moveRotate {
+    display: inline-block;
+    animation: framesMoveRotate 1.2s linear infinite;
+}
+
+// h5端
+.hydrated {
+    .taro-tabbar__tabbar {
+        display: none;
+    }
+}
+body, div.navbar, header {
+    margin: auto;
+    max-width: 768px;
+}
+body {
+    background: #f4f4f4;
+    color: #666;
+    line-height: 1.5;
+    transform: translateX(0);
+}
+// 动画
+@keyframes framesMoveRotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}

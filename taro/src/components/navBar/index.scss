@@ -1,0 +1,27 @@
+.navBar-wrap {
+    .navBar-main {
+        position: relative;
+        height: 88px;
+        display: flex;
+        align-items: center;
+        justify-items: flex-end;
+        padding: 0 16px;
+    }
+    .item {
+        display: flex;
+        justify-content: center;
+        justify-items: center;        
+    }
+    .item-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 32px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        overflow: hidden;
+    }
+}

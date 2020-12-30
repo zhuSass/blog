@@ -1,0 +1,3 @@
+<!--miniprogram/custom-tab-bar/index.wxml-->
+<cover-view class="tab-bar">
+</cover-view>

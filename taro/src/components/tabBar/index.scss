@@ -1,0 +1,32 @@
+.tabBar-wrap {
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+    box-shadow: 0 0 6px 0 #ddd;
+    background-color: #fcfcfc;
+    .tabBar-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .tabBar-item-img {
+        width: 50px;
+        height: 50px;
+    }
+    .tabBar-item-title,.iconfont {
+        margin-top: 3px;
+        line-height: 1;
+        font-size: 24px;
+        color: #7e7e7e,
+    }
+    .tabBar-actionItem {
+        .tabBar-item-title,.iconfont {
+            color: #6fadf8,
+        }
+    }
+}

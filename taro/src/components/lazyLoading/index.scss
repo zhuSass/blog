@@ -1,0 +1,49 @@
+.lazyLoadingWrap {
+    flex: 1;
+    .loadding {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 37px;
+        padding-bottom: 10px;
+    }
+    .errorStatus {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .text {
+        font-size: 26px;
+        color: rgba(000, 000, 000, 0.4);
+    }
+    .errorStatusLoad {
+        margin-top: 5;
+    }
+    .errorStatusLoadText {
+        font-size: 26px;
+        color: #1890ff;
+    }
+    .errorStatusIcon {
+        margin-bottom: 10px;
+        font-size: 32px;
+        color: rgba(000, 000, 000, 0.3);
+    }
+    .keyWordRecommendContentNoData {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding-top: 20px;
+        padding-bottom: 20px,
+    }
+    .noDataText {
+        font-size: 13px;
+        color: #969ba3;
+    }
+}

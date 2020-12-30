@@ -1,0 +1,126 @@
+.mod {
+  width: 702px;
+  height: 672px;
+}
+.box {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 24px;
+  background-color: #ffffff;
+  width: 702px;
+  height: 672px;
+}
+.main {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  background-color: #9b9b9b;
+  width: 702px;
+  height: 394px;
+  overflow: hidden;
+}
+.bannerWrap {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 702px;
+  height: 394px;
+}
+.banner {
+  position: relative;
+  width: 702px;
+  height: 394px;
+}
+.play {
+  position: absolute;
+  top: 138px;
+  left: 291px;
+  width: 120px;
+  height: 120px;
+}
+.block {
+  display: flex;
+  position: absolute;
+  top: 376px;
+  left: 24px;
+  align-items: flex-start;
+  flex-direction: row;
+  border-radius: 6px;
+  background-color: #ffb901;
+  padding-right: 11px;
+  padding-left: 10px;
+  height: 36px;
+  /*  #ifndef rn */
+  box-sizing: border-box;
+  /*  #endif */
+}
+.organization {
+  opacity: 1;
+  margin-top: 6px;
+  line-height: 24px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  /*  #ifndef rn */
+  white-space: nowrap;
+  /*  #endif */
+}
+.organizationNext {
+  opacity: 1;
+  margin-top: 6px;
+  line-height: 24px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 300;
+  /*  #ifndef rn */
+  white-space: nowrap;
+  /*  #endif */
+}
+.title {
+  position: relative;
+  opacity: 1;
+  margin-top: 30px;
+  margin-left: 24px;
+  max-width: 678px;
+  overflow: hidden;
+  line-height: 36px;
+  color: #333333;
+  font-size: 32px;
+  font-weight: 500;
+  /*  #ifndef rn */
+  text-overflow: ellipsis;
+  white-space: pre;
+  /*  #endif */
+}
+.summary {
+  webkit-line-clamp: 2px;
+  position: relative;
+  opacity: 1;
+  margin-top: 16px;
+  margin-left: 24px;
+  overflow: hidden;
+  line-height: 40px;
+  color: #888888;
+  font-size: 26px;
+  font-weight: 300;
+  /*  #ifndef rn */
+  text-overflow: ellipsis;
+  /*  #endif */
+}
+.normal_component {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  align-self: center;
+  flex-direction: column;
+  margin-top: 22px;
+  height: 65px;
+}

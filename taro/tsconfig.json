@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "noUnusedLocals": false, // 检查是否对象引用
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/tools/*": ["./src/tools/*"],
+      "@/store/*": ["./src/store/*"],
+      "@/config/*": ["./src/config/*"],
+      "@/https/*": ["./src/https/*"],
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "global.d.ts"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compileOnSave": false
+}
