@@ -1,0 +1,153 @@
+import React, {useState, ReactNode, useEffect,} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import Taro from '@tarojs/taro'
+import { Text,Picker,
+  View,
+} from '@tarojs/components'
+
+import {pxTransform} from '@/tools/index'
+import App from "@/globalData/index";
+import {AtCard, AtListItem} from "taro-ui";
+
+type Props = {
+  regionValue:Array<any>,
+  regionList:Array<any>,
+  length?: Number,
+  changeRegion: Function,
+}
+type States = {
+  regionValue:Array<any>,
+  regionIndex:Array<any>,
+  regionList:Array<any>,
+}
+
+function Index(props) {
+  const regionalIdentity = [2,3,4,5] // 后端对应的标识:1-大区域 2-省 3-市 4-区 5-街道
+  let regionalIdentityLeng = 3
+
+  const [areaPicker, setAreaPicker] = useState<States>({
+    regionValue: [],
+    regionIndex: [],
+    regionList: [],
+  })
+  useEffect(() => {
+    regionalIdentityLeng = props.length || 3;
+    setAreaPicker((old) => {
+      old.regionValue = JSON.parse(JSON.stringify(props.regionValue));
+      old.regionList = []
+      return {
+        ...old,
+      }
+    })
+  }, [props.regionValue])
+
+  const initRegion = async function() {
+    let list = regionalIdentity.slice(0, regionalIdentityLeng);
+    for (let i = 0; i < list.length; i++) {
+      let item = regionalIdentity[i];
+      let regionValue = areaPicker.regionValue.slice(0, i);
+      let id = regionValue.length ? regionValue.join(',') : undefined;
+      let data = await systemAddressList(item, id)
+      if (props.regionValue.length) {
+        for(let j = 0; j < data.length; j++) {
+          let listItem = data[j];
+          if (listItem.name === regionValue[i]) {
+            areaPicker.regionIndex[i] = j;
+          }
+        }
+      } else {
+        areaPicker.regionIndex[i] = 0;
+        areaPicker.regionValue[i] = data[0].name;
+      }
+    }
+    setAreaPicker(old => {
+      (old.regionIndex as Array<any>) = areaPicker.regionIndex;
+      (old.regionValue as Array<any>) = areaPicker.regionValue;
+      return {
+        ...old,
+      }
+    })
+  }
+  const systemAddressList = function(level:number, id: (string | undefined) = undefined,): Promise<[any]> {
+    return new Promise((resolve) => {
+      let data
+      if (id) {
+        data = id
+      } else {
+        data = -1
+      }
+      App.https.systemGetByName({ params: data }).then((res: any) => {
+        if (res.data && res.data.length) {
+          let regionListIndex = level - 2
+
+          setAreaPicker(old => {
+            (old.regionList as any)[regionListIndex] = res.data;
+            old.regionList = old.regionList.slice(0, regionListIndex + 1);
+            console.log('c-------------', old.regionList)
+
+            return {
+              ...old,
+            }
+          })
+          resolve(res.data)
+        }
+      })
+    })
+  }
+  const changeColumnRegion = async function (e) {
+    let currentColumnValue = e.detail.column;
+    let list = regionalIdentity.slice(0, regionalIdentityLeng);
+    let regionValue = areaPicker.regionValue.slice(0, currentColumnValue + 1);
+    let regionIndex:Array<number> = areaPicker.regionIndex.slice(0, currentColumnValue + 1);
+    let setIndex = {};
+    for (let i = e.detail.column; i < list.length; i++) {
+      let index = 0;
+      let value = '';
+      if (i === currentColumnValue) {
+        index = e.detail.value;
+        value = areaPicker.regionList[currentColumnValue][e.detail.value].name;
+      } else {
+        index = 0;
+        let id = regionValue.length ?regionValue.join(',') : undefined
+        let data = await systemAddressList(regionalIdentity[i], id);
+        value = data[index].name;
+      }
+      (regionValue[i] as any) = value;
+      regionIndex[i] = index;
+    }
+    setAreaPicker(old => {
+      (old.regionValue as Array<any>) = regionValue;
+      (old.regionIndex as Array<any>) = regionIndex;
+      old.regionList[2] = [];
+      console.log('结果-----------', old.regionList,regionValue)
+      return {
+        ...old,
+      }
+    })
+  }
+  const pickerChange = function (e) {
+    props.changeRegion(areaPicker.regionValue, e)
+  }
+  const clickInitRegion = function() {
+    setAreaPicker((old) => {
+      // old.regionList = [];
+      return {
+        ...old,
+      }
+    })
+    initRegion()
+  }
+
+  return (<Picker name='regionIndex' mode="multiSelector" onChange={pickerChange}
+              onColumnChange={changeColumnRegion}
+              value={areaPicker.regionIndex}
+              range-key={'name'}
+              range={areaPicker.regionList}>
+    <View onClick={initRegion}>
+     {props.children}
+    </View>
+    </Picker>)
+}
+
+export default Index
+
